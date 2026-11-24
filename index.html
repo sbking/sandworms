@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pixel Splats · Three Sandworms</title>
+<style>
+  :root {
+    --bg: #0c0908; --card: #16110e; --line: #33261d;
+    --fg: #f3eadc; --dim: #a89886; --acc: #f0a458; --gold: #ffd482;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 28px 20px 44px; min-height: 100vh;
+    background: radial-gradient(ellipse at 50% 0%, #24170f 0%, var(--bg) 62%);
+    color: var(--fg);
+    font: 500 14px/1.5 ui-monospace, "JetBrains Mono", Menlo, monospace;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  header { margin-bottom: 26px; }
+  h1 { margin: 0 0 6px; font-size: 24px; color: var(--gold); letter-spacing: 0.4px; }
+  .sub { color: var(--dim); font-size: 13px; max-width: 780px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    display: flex; flex-direction: column;
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    overflow: hidden; transition: transform 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: var(--acc);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(240, 164, 88, 0.25);
+  }
+  .thumb-link { display: block; position: relative; aspect-ratio: 16 / 10; background: #080605; overflow: hidden; }
+  .thumb-link img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    image-rendering: pixelated;
+    transition: transform 0.25s ease;
+  }
+  .card:hover .thumb-link img { transform: scale(1.03); }
+  .badge {
+    position: absolute; top: 10px; left: 10px;
+    background: rgba(12, 9, 8, 0.78); border: 1px solid rgba(255, 212, 130, 0.35);
+    color: var(--gold); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px;
+    backdrop-filter: blur(4px);
+  }
+  .body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .title { font-size: 16px; font-weight: 700; color: var(--fg); margin: 0; }
+  .desc { font-size: 12px; color: var(--dim); margin: 0; flex: 1; }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 8px 13px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: 700;
+    background: #2b1d14; border: 1px solid #6b492e; color: var(--gold);
+    transition: background 0.12s, border-color 0.12s;
+  }
+  .btn:hover { background: #3d281a; border-color: var(--acc); }
+  .btn.sec { background: #191411; border-color: #3b2d23; color: var(--dim); font-weight: 500; }
+  .btn.sec:hover { color: var(--fg); border-color: #6b492e; }
+  .controls {
+    margin-top: 26px; padding: 13px 16px;
+    background: rgba(22, 17, 14, 0.85); border: 1px solid var(--line); border-radius: 8px;
+    font-size: 12px; color: var(--dim); display: flex; flex-wrap: wrap; gap: 10px 22px;
+  }
+  .controls b { color: var(--fg); }
+  kbd {
+    background: #261c16; border: 1px solid #4a372a; border-radius: 3px;
+    padding: 1px 5px; font-size: 11px; color: var(--gold);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Pixel Splats · Three Sandworms</h1>
+    <div class="sub">
+      Three procedural WebGL2 Gaussian pixel-splat takes on the same desert sandworm brief — built purely from SDF geometry, noise fields, and custom pixel-art shading in the browser (no meshes, no textures).
+    </div>
+  </header>
+
+  <main class="grid">
+    <article class="card">
+      <a class="thumb-link" href="./sandworm-1.html">
+        <img src="./thumbs/sandworm-1.png" alt="Sandworm I preview" loading="eager">
+        <span class="badge">Sandworm I · ~230k splats</span>
+      </a>
+      <div class="body">
+        <h2 class="title">Sandworm I — Desert Breach</h2>
+        <p class="desc">Teal-slate armoured plates, warm terracotta ridges, and fast ~1 s procedural build straight in WebGL2.</p>
+        <div class="actions">
+          <a class="btn" href="./sandworm-1.html">Launch 3D Scene →</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="thumb-link" href="./sandworm-2.html">
+        <img src="./thumbs/sandworm-2.png" alt="Sandworm II preview" loading="eager">
+        <span class="badge">Sandworm II · ~860k splats</span>
+      </a>
+      <div class="body">
+        <h2 class="title">Sandworm II — Ringed Erg</h2>
+        <p class="desc">High-density rust-and-ochre erg under a ringed gas giant, with live sand spray, drifting dust, and motion.</p>
+        <div class="actions">
+          <a class="btn" href="./sandworm-2.html">Launch Full (~860k) →</a>
+          <a class="btn sec" href="./sandworm-2-lite.html" title="Same worm, light, palette &amp; motion at ~250k splats for faster load on phones/laptops">Fast Lite (~250k)</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="thumb-link" href="./sandworm-3.html">
+        <img src="./thumbs/sandworm-3.png" alt="Sandworm III preview" loading="eager">
+        <span class="badge">Sandworm III · Twin Suns</span>
+      </a>
+      <div class="body">
+        <h2 class="title">Sandworm III — Twin Suns</h2>
+        <p class="desc">Swept spline breach rising from wind-rippled ochre dunes with glowing maw light and dramatic twin-sun desert atmosphere.</p>
+        <div class="actions">
+          <a class="btn" href="./sandworm-3.html">Launch 3D Scene →</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <section class="controls">
+    <span><b>Viewer controls:</b></span>
+    <span><b>Drag</b> orbit camera</span>
+    <span><b>Scroll / Pinch</b> zoom</span>
+    <span><kbd>R</kbd> toggle auto-spin</span>
+    <span><kbd>P</kbd> cycle palette</span>
+    <span><kbd>[</kbd> <kbd>]</kbd> pixel resolution</span>
+  </section>
+</div>
+</body>
+</html>
